@@ -1,0 +1,21 @@
+### GET request to example server
+GET http://localhost:8081/tasks
+Content-Type: */*
+
+### GET request to example server
+GET http://localhost:8081/tasks/1
+Content-Type: */*
+
+### GET request to example server
+GET http://localhost:8081/tasks/100
+Content-Type: */*
+
+### POST a task
+POST http://localhost:8081/tasks
+Content-Type: application/json
+
+{
+  "title": "PACT",
+  "assignedTo": "Vasco",
+  "status": "AVAILABLE"
+}
