@@ -63,8 +63,7 @@
 				<artifactId>native-maven-plugin</artifactId>
 				<configuration>
 					<buildArgs>
-						<buildArg>--enable-monitoring=jvmstat</buildArg>
-						<buildArg>--enable-monitoring=heapdump</buildArg>
+						<buildArg>--enable-monitoring=heapdump,jvmstat</buildArg>
 					</buildArgs>
 				</configuration>
 			</plugin>
@@ -74,5 +73,85 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<!-- from https://github.com/alina-yur/native-spring-boot -->
+	<profiles>
+		<profile>
+			<id>instrumented</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.graalvm.buildtools</groupId>
+						<artifactId>native-maven-plugin</artifactId>
+						<configuration>
+							<imageName>demo-instrumented</imageName>
+							<buildArgs>
+								<buildArg>--pgo-instrument</buildArg>
+							</buildArgs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>optimized</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.graalvm.buildtools</groupId>
+						<artifactId>native-maven-plugin</artifactId>
+						<configuration>
+							<imageName>demo-optimized</imageName>
+							<buildArgs>
+								<!-- G1 is only available on linux -->
+<!--								<buildArg>&#45;&#45;gc=G1</buildArg>-->
+								<buildArg>--pgo=${project.basedir}/default.iprof</buildArg>
+								<buildArg>-march=native</buildArg>
+							</buildArgs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>monitored</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.graalvm.buildtools</groupId>
+						<artifactId>native-maven-plugin</artifactId>
+						<configuration>
+							<imageName>demo-monitored</imageName>
+							<buildArgs>
+<!--								<buildArg>&#45;&#45;gc=G1</buildArg>-->
+								<buildArg>--pgo=${project.basedir}/default.iprof</buildArg>
+								<buildArg>-march=native</buildArg>
+								<buildArg>--enable-monitoring=heapdump,jfr,jvmstat</buildArg>
+							</buildArgs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>report</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.graalvm.buildtools</groupId>
+						<artifactId>native-maven-plugin</artifactId>
+						<configuration>
+							<imageName>demo-report</imageName>
+							<buildArgs>
+								<buildArg>--pgo</buildArg>
+								<buildArg>-H:+BuildReport</buildArg>
+								<buildArg>-H:+BuildReportSamplerFlamegraph</buildArg>
+							</buildArgs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
