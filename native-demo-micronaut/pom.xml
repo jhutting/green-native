@@ -37,11 +37,6 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>io.micronaut.flyway</groupId>
-      <artifactId>micronaut-flyway</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>io.micronaut.serde</groupId>
       <artifactId>micronaut-serde-jackson</artifactId>
       <scope>compile</scope>
@@ -170,6 +165,7 @@
           <compilerArgs>
             <arg>-Amicronaut.processing.group=com.green.micronaut</arg>
             <arg>-Amicronaut.processing.module=tasks</arg>
+<!--            <arg>&#45;&#45;initialized-to-build-time=io.netty.buffer,io.netty.util,java.net.Inet4Address,java.net.Inet6Address</arg>-->
           </compilerArgs>
         </configuration>
       </plugin>

@@ -63,7 +63,7 @@
 				<artifactId>native-maven-plugin</artifactId>
 				<configuration>
 					<buildArgs>
-						<buildArg>--enable-monitoring=heapdump,jvmstat</buildArg>
+						<buildArg>--enable-monitoring=heapdump,jvmstat,jfr</buildArg>
 					</buildArgs>
 				</configuration>
 			</plugin>

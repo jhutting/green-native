@@ -1,3 +1,8 @@
+Build native image
+```script
+./mvnw package -Dpackaging=native-image
+```
+
 ## Micronaut 4.4.2 Documentation
 
 - [User Guide](https://docs.micronaut.io/4.4.2/guide/index.html)

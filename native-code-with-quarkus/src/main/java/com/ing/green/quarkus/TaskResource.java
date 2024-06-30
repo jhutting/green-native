@@ -2,7 +2,6 @@ package com.ing.green.quarkus;
 
 import com.ing.green.quarkus.entity.TaskEntity;
 import com.ing.green.quarkus.model.Task;
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -12,8 +11,6 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
-import org.jboss.resteasy.reactive.PartType;
-import org.jboss.resteasy.reactive.RestForm;
 
 import java.util.List;
 import java.util.Random;
@@ -45,6 +42,7 @@ public class TaskResource {
     @GET
     @Path("random/{max}")
     @Produces(MediaType.TEXT_PLAIN)
+    //@RunOnVirtualThread // this will use more memory...
     public Task getRandomTask(@PathParam("max") Long max) {
         Long id = random.nextLong(max) + 1;
         TaskEntity taskEntity = TaskEntity.findById(id);

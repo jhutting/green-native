@@ -137,5 +137,32 @@
                 <quarkus.native.enabled>true</quarkus.native.enabled>
             </properties>
         </profile>
+<!--        <profile>-->
+<!--            <id>instrumented</id>-->
+<!--            <activation>-->
+<!--                <property>-->
+<!--                    <name>native</name>-->
+<!--                </property>-->
+<!--            </activation>-->
+<!--            <properties>-->
+<!--                <skipITs>false</skipITs>-->
+<!--                <quarkus.native.enabled>true</quarkus.native.enabled>-->
+<!--                <quarkus.native.additional-build-args>&#45;&#45;pgo-instrument</quarkus.native.additional-build-args>-->
+<!--            </properties>-->
+<!--        </profile>-->
+        <profile>
+            <id>optimized</id>
+            <activation>
+                <property>
+                    <name>native</name>
+                </property>
+            </activation>
+            <properties>
+                <skipITs>false</skipITs>
+                <quarkus.native.enabled>true</quarkus.native.enabled>
+                <quarkus.native.additional-build-args>--pgo=${project.basedir}/default.iprof</quarkus.native.additional-build-args>
+            </properties>
+        </profile>
     </profiles>
+
 </project>

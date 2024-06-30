@@ -3,4 +3,4 @@ defaultPackage: com.green.micronaut
 testFramework: junit
 sourceLanguage: java
 buildTool: maven
-features: [app-name, data, data-jpa, flyway, graalvm, h2, http-client-test, java, java-application, jdbc-hikari, junit, logback, maven, maven-enforcer-plugin, micronaut-aot, micronaut-http-validation, netty-server, properties, readme, serialization-jackson, shade, static-resources, validation]
+features: [app-name, data, data-jpa, graalvm, h2, http-client-test, java, java-application, jdbc-hikari, junit, logback, maven, maven-enforcer-plugin, micronaut-aot, micronaut-http-validation, netty-server, properties, readme, serialization-jackson, shade, static-resources, validation]
