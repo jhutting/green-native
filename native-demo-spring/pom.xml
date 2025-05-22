@@ -5,16 +5,18 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.0</version>
+		<version>3.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>com.ing.green.spring</groupId>
 	<artifactId>native-demo-spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>native-demo-spring</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>21</java.version>
+
+		<maven.versions.plugin>2.18.0</maven.versions.plugin>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -31,6 +33,7 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -39,6 +42,18 @@
 	</dependencies>
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>${maven.versions.plugin}</version>
+					<configuration>
+						<ignoredVersions>.*-M.*,.*-alpha.*,.*-beta.*,.*CR1</ignoredVersions>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.hibernate.orm.tooling</groupId>
@@ -62,8 +77,13 @@
 				<groupId>org.graalvm.buildtools</groupId>
 				<artifactId>native-maven-plugin</artifactId>
 				<configuration>
+					<mainClass></mainClass>
 					<buildArgs>
 						<buildArg>--enable-monitoring=heapdump,jvmstat,jfr</buildArg>
+						<buildArg>-H:+UnlockExperimentalVMOptions</buildArg>
+						<!-- needed due to netty... -->
+<!--						<buildArg>&#45;&#45;initialize-at-build-time=ch.qos.logback.classic.Logger,ch.qos.logback.classic.LoggerContext,ch.qos.logback.core.BasicStatusManager,ch.qos.logback.classic.spi.TurboFilterList,ch.qos.logback.core.helpers.CyclicBuffer,ch.qos.logback.classic.spi.LoggerContextVO,ch.qos.logback.core.spi.LogbackLock,ch.qos.logback.core.status.InfoStatus,ch.qos.logback.core.spi.AppenderAttachableImpl</buildArg>-->
+<!--						<buildArg>&#45;&#45;trace-object-instantiation=ch.qos.logback.core.spi.LogbackLock</buildArg>-->
 					</buildArgs>
 				</configuration>
 			</plugin>
