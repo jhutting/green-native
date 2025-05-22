@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.green.micronaut</groupId>
+  <groupId>com.ing.green.micronaut</groupId>
   <artifactId>native-demo-micronaut</artifactId>
   <version>0.1</version>
   <packaging>${packaging}</packaging>
@@ -19,7 +19,7 @@
     <micronaut.version>${parent.version}</micronaut.version>
     <micronaut.runtime>netty</micronaut.runtime>
     <micronaut.aot.enabled>false</micronaut.aot.enabled>
-    <micronaut.aot.packageName>com.green.micronaut.aot.generated</micronaut.aot.packageName>
+    <micronaut.aot.packageName>com.ing.green.micronaut.aot.generated</micronaut.aot.packageName>
     <exec.mainClass>com.ing.green.micronaut.Application</exec.mainClass>
   </properties>
 
@@ -163,9 +163,8 @@
             </path>
           </annotationProcessorPaths>
           <compilerArgs>
-            <arg>-Amicronaut.processing.group=com.green.micronaut</arg>
+            <arg>-Amicronaut.processing.group=com.ing.green.micronaut</arg>
             <arg>-Amicronaut.processing.module=tasks</arg>
-            <arg>--initialized-to-build-time=io.netty.buffer,io.netty.util,java.net.Inet4Address,java.net.Inet6Address</arg>
           </compilerArgs>
         </configuration>
       </plugin>
